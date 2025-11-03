@@ -74,6 +74,19 @@ public class GenerateWithNoise : MonoBehaviour
     {
         Color color = new Color(colorNoise, colorNoise, colorNoise, 1);
         blockRenderer.material.color = color;
+        if (colorNoise < 0.3f) {
+            blockRenderer.material.color = Color.yellow;
+            blockRenderer.tag = "Sand";
+        } else if (colorNoise < 0.6f)
+        {
+            blockRenderer.material.color = Color.green;
+            blockRenderer.tag = "Grass";
+        }
+        else
+        {
+            blockRenderer.material.color = Color.gray;
+            blockRenderer.tag = "Rock";
+        }
     }
 
     void ChangeHeight(GameObject thisObj, float newY, float additionalScale = 1)
@@ -98,7 +111,6 @@ public class GenerateWithNoise : MonoBehaviour
                 ChangeMaterial(blockWorld[i, j].transform.GetComponent<MeshRenderer>(), newColor);
 
                 ChangeHeight(blockWorld[i, j], newColor);
-
             }
         }
     }
@@ -116,4 +128,5 @@ public class GenerateWithNoise : MonoBehaviour
             }
         }
     }
+
 }
